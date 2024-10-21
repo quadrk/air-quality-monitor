@@ -8,3 +8,6 @@ __pycache__/
 
 # Ignore logs
 *.log
+
+# VSCode settings
+.vscode/
