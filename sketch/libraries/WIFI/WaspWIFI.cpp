@@ -4758,7 +4758,7 @@ void WaspWIFI::getIP()
 }
 
 //! Displays the device MAC address.
-void WaspWIFI::getMAC()
+void WaspWIFI::getMAC(char* macAddress)
 {
 	char question[20];
 	uint16_t i=0;
@@ -4789,20 +4789,38 @@ void WaspWIFI::getMAC()
 		latencyDelay();
 	}
 	answer[i]='\0'; 
+
+	// Extract MAC address from the 'answer' string (e.g., "Mac Addr=XX:XX:XX:XX:XX:XX")
+    char* start = strstr(answer, "Mac Addr=");
+    if (start != NULL) {
+        // Copy MAC address part only
+        strncpy(macAddress, start + 9, 17);  // MAC address is 17 characters (XX:XX:XX:XX:XX:XX)
+        macAddress[17] = '\0';  // Null-terminate the MAC address string
+    } else {
+        strcpy(macAddress, "Unknown");
+    }
 	
 	#ifdef DEBUG_WIFI
-	// seek start of info in 'answer
-	char* start=strstr(answer,"Mac Addr=");
-	
-	if( start==NULL )
-	{
-		return (void)0;
-	}
-	
-	// Shows the info
-	USB.println(start);
+    USB.print("MAC Address: ");
+    USB.println(macAddress);
 	#endif
 }
+
+//! Displays formatted MAC address (e.g., "XXXXXXXXXXXX")
+void WaspWIFI::getFormattedMAC(char* formattedMacAddress) {
+    char rawMac[18];  // Buffer for the raw MAC address with colons
+    getMAC(rawMac);   // Get the raw MAC address
+
+    // Remove colons and make it uppercase
+    int j = 0;
+    for (int i = 0; i < strlen(rawMac); i++) {
+        if (rawMac[i] != ':') {
+            formattedMacAddress[j++] = toupper(rawMac[i]);  // Uppercase and remove colons
+        }
+    }
+    formattedMacAddress[j] = '\0';  // Null-terminate the formatted MAC address
+}
+
 
 //! Displays the option settings like device ID.
 void WaspWIFI::getOptionSettings()

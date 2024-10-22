@@ -27,7 +27,7 @@ async def log_requests(request: Request, call_next):
 async def create_temperature(temp_data: schemas.TemperatureCreate, db: AsyncSession = Depends(get_db)):
     try:
         logger.info(f"Received temperature data: {temp_data}")
-        new_temp = models.TemperatureData(temperature=temp_data.temperature)
+        new_temp = models.TemperatureData(temperature=temp_data.temperature, node_id=temp_data.node_id)
         db.add(new_temp)
         await db.commit()
         await db.refresh(new_temp)

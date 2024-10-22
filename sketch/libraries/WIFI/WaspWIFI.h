@@ -926,7 +926,14 @@ class WaspWIFI
       \param void
       \return void
     */ 
-    void getMAC();
+    void getMAC(char* macAddress);
+
+   //! Displays the device formatted MAC address.
+    /*!
+      \param void
+      \return void
+    */ 
+    void getFormattedMAC(char* formattedMacAddress);
     
     //! Displays the option settings like device ID.
     /*!
