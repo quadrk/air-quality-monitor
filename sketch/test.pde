@@ -1,4 +1,6 @@
 // test temperature + dust pm10 sensor
+// 24.10.2024: seems good values
+// Libelium Waspmote Plug & Sense! Smart Cities (SC)
 
 #include <WaspSensorCities.h>
 
