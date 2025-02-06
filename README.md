@@ -6,22 +6,8 @@ The project is divided into two parts:
 
 # Project Structure
 
-- **Air-Quality-Monitor/**
-  - **server/** - Server-side application code
-    - **app/**
-      - **database.py** - Database connection and configuration
-      - **main.py** - FastAPI routes and app logic
-      - **models.py** - Database models for temperature data
-      - **schemas.py** - Pydantic models for data validation
-    - **requirements.txt** - Python dependencies for the server
-    - **.env** - Environment variables for database connection
-  - **sketch/** - Waspmote sketch code
-    - **libraries/** - Required libraries for sensors and communication
-    - **waspmote-api/** - Waspmote API code
-    - **main.pde** - Main sketch file for the Waspmote device
-  - **.gitignore** - Files to be ignored by Git
-  - **README.md** - General project README (this file)
- 
+
+
 
 # Getting Started
 
